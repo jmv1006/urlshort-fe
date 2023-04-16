@@ -5,7 +5,7 @@ const route = useRoute();
 const router = useRouter();
 
 const getRedirectUrl = async () => {
-    const res = await fetch('/api/' + `${route.params.redirectId}`);
+    const res = await fetch('/api/' + "/api/" + `${route.params.redirectId}`);
     if(res.ok) {
         const resJSON = await res.json();
         const redirect = resJSON.url;
