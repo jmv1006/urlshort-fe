@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
+import ResponseDisplay from './ResponseDisplay.vue';
 
 const getShortURL = async () => {
     state.error = false;
@@ -46,8 +47,8 @@ const getShortURL = async () => {
             <button type="submit">Shorten</button>
         </form>
         <div class="responseContainer">
-            <div v-if="state.error">Please enter a valid URL!</div>
-            <a v-if="state.urlShortenedSuccess" :href="state.shortenedURL" target="_blank">{{ state.shortenedURL }}</a>
+            <ResponseDisplay v-if="state.error" :successful=false shortened-url=""/>
+            <ResponseDisplay v-if="state.urlShortenedSuccess" :successful="true" :shortened-url="state.shortenedURL" />
         </div>
     </div>
 </template>

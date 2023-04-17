@@ -8,7 +8,8 @@ import './style.css'
 
 const routes = [
     {path: '/', component: HomePage},
-    {path: '/:redirectId', component: Redirect}
+    {path: '/:redirectId', component: Redirect},
+    {path: '/:pathMatch(.*)*', component: HomePage}
 ]
 
 const router = createRouter({

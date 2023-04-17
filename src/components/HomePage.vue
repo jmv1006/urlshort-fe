@@ -1,24 +1,20 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import InputContainer from './InputContainer.vue';
-
-
-const person = ref({
-  name: "Jonathan",
-  age: 21
-})
+import Footer from './Footer.vue';
 
 </script>
 
 <template>
-  <div class="helloWorldContainer">
+  <div class="homeContainer">
     <div id="mainTitle">url-short</div>
     <InputContainer />
   </div>
+  <Footer />
 </template>
 
 <style scoped>
-  .helloWorldContainer {
+  .homeContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
