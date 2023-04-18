@@ -12,7 +12,7 @@ const state = reactive({
 
 const copyURL = () => {
     navigator.clipboard.writeText(props.shortenedUrl);
-    state.copied = true;
+    state.copied = true;ß
 }
 
 </script>
