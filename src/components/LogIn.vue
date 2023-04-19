@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
-import UserInterface from '../Config/UserInterface';
+import UserInterface from '../Config/Interfaces/UserInterface';
 
     const props = defineProps<{
         toggleModal: (type:string) => void
@@ -9,7 +9,8 @@ import UserInterface from '../Config/UserInterface';
 
     const state = reactive({
       username: "",
-      password: ""
+      password: "",
+      error: false
     })
 
     const fetchLogIn = async () => {
@@ -31,6 +32,8 @@ import UserInterface from '../Config/UserInterface';
         const user: UserInterface = resJSON.user;
         props.logInUser(user.username, user.id);
         props.toggleModal("");
+      } else {
+        state.error = true
       }
     }
 
@@ -43,6 +46,7 @@ import UserInterface from '../Config/UserInterface';
       <input type="text" placeholder="email" v-model="state.username"/>
       <input type="password" placeholder="password" v-model="state.password"/>
       <button type="submit">Log In</button>
+      <div v-if="state.error" class="errorMessage">Error Signing In</div>
     </form>
   </div>
 </template>
@@ -67,5 +71,11 @@ import UserInterface from '../Config/UserInterface';
     display: flex;
     flex-direction: column;
     gap: 1rem;
+  }
+
+  .errorMessage {
+    color: red;
+    width: 100%;
+    text-align: center;
   }
 </style>

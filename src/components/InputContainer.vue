@@ -1,6 +1,19 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 import ResponseDisplay from './ResponseDisplay.vue';
+import UserInterface from '../Config/Interfaces/UserInterface';
+import BaseURLDBModel from '../Config/Interfaces/BaseURLDBModel';
+
+defineProps<{
+    user: UserInterface | null
+}>();
+
+interface IState {
+    urlInput: string,
+    urlShortenedSuccess: boolean,
+    error: boolean,
+    urlInfo: BaseURLDBModel | null
+}
 
 const getShortURL = async () => {
     state.error = false;
@@ -26,15 +39,19 @@ const getShortURL = async () => {
     } else {
         const resJSON = await res.json();
         state.urlShortenedSuccess = true;
-        state.shortenedURL = resJSON.url;
+        state.urlInfo = {
+            id: resJSON.urlInfo.id,
+            url: resJSON.urlInfo.url,
+            redirect: resJSON.urlInfo.redirect
+        }
     }
 }
 
-    const state = reactive({
+    const state: IState = reactive({
         urlInput: "",
         urlShortenedSuccess: false,
-        shortenedURL: "",
-        error: false
+        error: false,
+        urlInfo: null
     })
 
 </script>
@@ -47,8 +64,8 @@ const getShortURL = async () => {
             <button type="submit">Shorten</button>
         </form>
         <div class="responseContainer">
-            <ResponseDisplay v-if="state.error" :successful=false shortened-url=""/>
-            <ResponseDisplay v-if="state.urlShortenedSuccess" :successful="true" :shortened-url="state.shortenedURL" />
+            <ResponseDisplay :url-info="state.urlInfo"  :user="user" v-if="state.error" :successful="false" />
+            <ResponseDisplay :url-info="state.urlInfo" :user="user" v-if="state.urlShortenedSuccess" :successful="true" />
         </div>
     </div>
 </template>

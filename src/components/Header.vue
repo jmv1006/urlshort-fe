@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
-import UserInterface from '../Config/UserInterface';
+import UserInterface from '../Config/Interfaces/UserInterfaceerInterface';
 
 const props = defineProps<{ toggleModal: (type: string) => void, user: UserInterface | null }>();
 

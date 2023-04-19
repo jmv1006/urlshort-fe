@@ -4,35 +4,37 @@ import BaseModal from './BaseModal.vue';
 import Footer from './Footer.vue';
 import Header from './Header.vue';
 import { reactive } from 'vue';
-import UserInterface from '../Config/UserInterface';
+import UserInterface from '../Config/Interfaces/UserInterface';
+import UserSavedUrls from './UserSavedUrls.vue';
+import useStore from '../store/store';
 
-interface AppState {
-  user: UserInterface | null,
+interface IState {
   modalToggled: boolean,
   modalType: string
 }
 
-const appState: AppState = reactive( { user: null, modalToggled: false, modalType: "sign-in"} )
+const state: IState = reactive( { modalToggled: false, modalType: "sign-in"} )
+const appState = useStore();
 
 const toggleModal = (type: string) => {
-  appState.modalToggled = !appState.modalToggled
-  appState.modalType = type
+  state.modalToggled = !state.modalToggled
+  state.modalType = type
 }
 
 const logInUser = (username: string, id: string) => {
-  appState.user = {username, id};
+  appState.setUser({username, id});
 }
 
 </script>
 
 <template>
-  <Header :toggle-modal="toggleModal" :user="appState.user"/>
+  <Header :toggle-modal="toggleModal" :user="appState.getUser()"/>
   <div class="homeContainer">
     <div id="mainTitle">url-short</div>
-    <InputContainer />
+    <InputContainer :user="appState.getUser()"/>
   </div>
-  <BaseModal :toggle-modal="toggleModal" :log-in-user="logInUser" :type="appState.modalType" v-if="appState.modalToggled" />
-  <Footer />
+  <BaseModal :toggle-modal="toggleModal" :log-in-user="logInUser" :type="state.modalType" v-if="state.modalToggled" />
+  <UserSavedUrls v-if="appState.getUser() != null" :user="appState.getUser()"/>
 </template>
 
 <style scoped>
