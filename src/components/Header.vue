@@ -2,14 +2,15 @@
 import { defineProps } from 'vue';
 import UserInterface from '../Config/UserInterface';
 
-const props = defineProps<{ toggleModal: () => void, user: UserInterface | null }>();
+const props = defineProps<{ toggleModal: (type: string) => void, user: UserInterface | null }>();
 
 </script>
 
 <template>
   <div class="header">
-    <button class="signInButton" v-if="!user" @click="props.toggleModal">Sign In</button>
-    <div v-if="user">Signed In</div>
+    <button class="baseButton" v-if="!user" @click="props.toggleModal('sign-in')">Sign In</button>
+    <button class="baseButton" v-if="!user" @click="props.toggleModal('sign-up')">Sign Up</button>
+    <div v-if="user" class="signedInText">Signed In</div>
   </div>
 </template>
 
@@ -22,7 +23,11 @@ const props = defineProps<{ toggleModal: () => void, user: UserInterface | null 
         justify-content: end;
     }
 
-    .signInButton {
+    .baseButton {
         margin-right: 1rem;
+    }
+
+    .signedInText {
+      margin-right: 1rem;
     }
 </style>
