@@ -61,7 +61,7 @@ const getShortURL = async () => {
         <div id="infoSubtitle">Please enter a url starting with http or https:</div>
         <form class="inputContainer" @submit.prevent @submit="getShortURL">
             <input v-model="state.urlInput" class="mainForm" placeholder="Enter URL Here">
-            <button type="submit">Shorten</button>
+            <button type="submit" class="submitButton">Shorten</button>
         </form>
         <div class="responseContainer">
             <ResponseDisplay :url-info="state.urlInfo"  :user="user" v-if="state.error" :successful="false" />
@@ -73,7 +73,6 @@ const getShortURL = async () => {
 <style scoped>
   .inputContainer {
     display: flex;
-    gap: 1rem;
   }
 
   .mainForm {
@@ -84,10 +83,21 @@ const getShortURL = async () => {
   }
 
   .responseContainer {
-    height: 1.5rem;
+    height: 1rem;
   }
 
   #infoSubtitle {
     width: 25rem;
+  }
+
+  .submitButton {
+    padding: .5rem;
+    border: none;
+    background-color: #7dcafa;
+  }
+
+  .submitButton:hover {
+    text-decoration: underline;
+    cursor: pointer;
   }
 </style>

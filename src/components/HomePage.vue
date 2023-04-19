@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import InputContainer from './InputContainer.vue';
 import BaseModal from './BaseModal.vue';
-import Footer from './Footer.vue';
 import Header from './Header.vue';
 import { reactive } from 'vue';
-import UserInterface from '../Config/Interfaces/UserInterface';
 import UserSavedUrls from './UserSavedUrls.vue';
 import useStore from '../store/store';
 
@@ -34,7 +32,7 @@ const logInUser = (username: string, id: string) => {
     <InputContainer :user="appState.getUser()"/>
   </div>
   <BaseModal :toggle-modal="toggleModal" :log-in-user="logInUser" :type="state.modalType" v-if="state.modalToggled" />
-  <UserSavedUrls v-if="appState.getUser() != null" :user="appState.getUser()"/>
+  <UserSavedUrls v-if="appState.getUser() != null" />
 </template>
 
 <style scoped>

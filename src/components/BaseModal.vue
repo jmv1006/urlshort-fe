@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { reactive } from 'vue';
 import LogIn from './LogIn.vue';
 import SignUp from './SignUp.vue';
 
@@ -8,11 +7,6 @@ import SignUp from './SignUp.vue';
         type: string,
         logInUser: (username: string, id: string) => void
     }>();
-
-    const state = reactive({
-      username: "",
-      password: ""
-    })
 
 </script>
 
@@ -43,8 +37,9 @@ import SignUp from './SignUp.vue';
   }
 
   .modalContent {
+    color: black;
     width: 30rem;
-    height: 35rem;
+    height: 25rem;
     background-color: white;
     display: flex;
     flex-direction: column;

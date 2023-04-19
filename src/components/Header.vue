@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
-import UserInterface from '../Config/Interfaces/UserInterfaceerInterface';
+import useStore from '../store/store';
+import UserInterface from '../Config/Interfaces/UserInterface';
 
 const props = defineProps<{ toggleModal: (type: string) => void, user: UserInterface | null }>();
+
+const store = useStore();
 
 </script>
 
@@ -25,6 +28,18 @@ const props = defineProps<{ toggleModal: (type: string) => void, user: UserInter
 
     .baseButton {
         margin-right: 1rem;
+        background-color: #7dcafa;
+        border: none;
+        padding: 0.4rem;
+    }
+
+    .baseButton:hover {
+        margin-right: 1rem;
+        background-color: #7dcafa;
+        border: none;
+        padding: 0.4rem;
+        text-decoration: underline;
+        cursor: pointer;
     }
 
     .signedInText {

@@ -54,15 +54,29 @@ const saveUrl = async () => {
 <template>
     <div v-if="successful" class="shortenedURLContainer">
         <span>{{ "https://url-short.dev/" + props.urlInfo?.url }}</span>
-        <button @click="copyURL">{{ state.copied ? "Copied" : "Copy" }}</button>
-        <button v-if="user && !state.saved" @click="saveUrl">Save</button>
+        <button @click="copyURL" class="responseDisplayButton">{{ state.copied ? "Copied" : "Copy" }}</button>
+        <button v-if="user && !state.saved" @click="saveUrl" class="responseDisplayButton">Save</button>
     </div>
     <div v-if="!successful">Please enter a valid URL!</div>
 </template>
 
 <style scoped>
     .shortenedURLContainer {
+        margin-top: 0.5rem;
         display: flex;
-        gap: .5rem;
+        gap: 0.5rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .responseDisplayButton {
+        background-color: #7dcafa;
+        border: none;
+        padding: 0.4rem;
+    }
+
+    .responseDisplayButton:hover {
+        text-decoration: underline;
+        cursor: pointer;
     }
 </style>
