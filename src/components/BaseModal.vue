@@ -32,18 +32,34 @@ import SignUp from './SignUp.vue';
   }
   .closeButton {
     width: 2rem;
+    height: 1.5rem;
     margin-top: .5rem;
     margin-right: .5rem;
+    border: none;
+    background-color: transparent;
+    color: white;
+  }
+
+  .closeButton:hover {
+    width: 2rem;
+    height: 1.5rem;
+    margin-top: .5rem;
+    margin-right: .5rem;
+    border: none;
+    background-color: transparent;
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
   }
 
   .modalContent {
-    color: black;
     width: 30rem;
     height: 25rem;
-    background-color: white;
+    background-color: #4c4c4d;
     display: flex;
     flex-direction: column;
     gap: 1rem;
     align-items: end;
+    border-radius: 0.5rem;
   }
 </style>

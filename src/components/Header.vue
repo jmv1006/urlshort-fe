@@ -12,7 +12,7 @@ const store = useStore();
 <template>
   <div class="header">
     <button class="baseButton" v-if="!user" @click="props.toggleModal('sign-in')">Sign In</button>
-    <button class="baseButton" v-if="!user" @click="props.toggleModal('sign-up')">Sign Up</button>
+    <!---- <button class="baseButton" v-if="!user" @click="props.toggleModal('sign-up')">Sign Up</button> -->
     <div v-if="user" class="signedInText">Signed In</div>
   </div>
 </template>

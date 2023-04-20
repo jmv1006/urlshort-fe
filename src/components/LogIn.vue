@@ -45,7 +45,7 @@ import UserInterface from '../Config/Interfaces/UserInterface';
     <form class="logInForm" @submit.prevent @submit="fetchLogIn">
       <input type="text" placeholder="email" v-model="state.username"/>
       <input type="password" placeholder="password" v-model="state.password"/>
-      <button type="submit">Log In</button>
+      <button type="submit" class="logInSubmitButton">Log In</button>
       <div v-if="state.error" class="errorMessage">Error Signing In</div>
     </form>
   </div>
@@ -77,5 +77,19 @@ import UserInterface from '../Config/Interfaces/UserInterface';
     color: red;
     width: 100%;
     text-align: center;
+  }
+
+  .logInSubmitButton {
+    background-color: #7dcafa;
+    border: none;
+    padding: .25rem;
+  }
+
+  .logInSubmitButton:hover {
+    background-color: #7dcafa;
+    border: none;
+    padding: .25rem;
+    text-decoration: underline;
+    cursor: pointer;
   }
 </style>
