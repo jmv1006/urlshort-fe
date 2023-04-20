@@ -17,7 +17,7 @@ const useStore = () => {
         return AppState.user;
     }
 
-    const setUser = (user: UserInterface) => {
+    const setUser = (user: UserInterface | null) => {
         AppState.user = user;
     }
 

@@ -7,13 +7,18 @@ const props = defineProps<{ toggleModal: (type: string) => void, user: UserInter
 
 const store = useStore();
 
+const signOut = () => {
+  store.setUser(null);
+}
+
 </script>
 
 <template>
   <div class="header">
     <button class="baseButton" v-if="!user" @click="props.toggleModal('sign-in')">Sign In</button>
-    <!---- <button class="baseButton" v-if="!user" @click="props.toggleModal('sign-up')">Sign Up</button> -->
+    <button class="baseButton" v-if="!user" @click="props.toggleModal('sign-up')">Sign Up</button>
     <div v-if="user" class="signedInText">Signed In</div>
+    <div v-if="user" class="baseButton" @click="signOut">Sign Out</div>
   </div>
 </template>
 
@@ -27,6 +32,7 @@ const store = useStore();
     }
 
     .baseButton {
+      color: black;
         margin-right: 1rem;
         background-color: #7dcafa;
         border: none;
