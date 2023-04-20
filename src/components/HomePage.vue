@@ -2,6 +2,7 @@
 import InputContainer from './InputContainer.vue';
 import BaseModal from './BaseModal.vue';
 import Header from './Header.vue';
+import Footer from './Footer.vue';
 import { reactive } from 'vue';
 import UserSavedUrls from './UserSavedUrls.vue';
 import useStore from '../store/store';

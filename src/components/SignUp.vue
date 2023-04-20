@@ -69,13 +69,16 @@ import UserInterface from '../Config/Interfaces/UserInterface';
     <div class="signUpContent">
       <h2>Sign Up</h2>
       <form class="signUpForm" @submit.prevent @submit="createUser">
-        <input type="email" placeholder="Email (Username)" v-model="state.username"/>
-        <input type="password" placeholder="Password" v-model="state.password" v-on:input="setPasswordsMatch"/>
-        <input type="password" placeholder="Confirm Password" v-model="state.confirmedPassword" v-on:input="setPasswordsMatch"/>
+        <label>Username (Email)</label>
+        <input type="email" v-model="state.username"/>
+        <label>Password (At least 8 characters)</label>
+        <input type="password" v-model="state.password" v-on:input="setPasswordsMatch"/>
+        <label>Confirm Password</label>
+        <input type="password" v-model="state.confirmedPassword" v-on:input="setPasswordsMatch"/>
         <button class="signUpButton" v-if="!state.loading" type="submit">Sign Up</button>
       </form>
       <div v-if="!state.passwordsMatch" class="errorText">Passwords Do Not Match</div>
-      <div v-if="state.error" class="errorText">Error Creating User</div>
+      <div v-if="state.error" class="errorText">Error Signing Up</div>
     </div>
 </template>
 
@@ -91,7 +94,7 @@ import UserInterface from '../Config/Interfaces/UserInterface';
   .signUpForm {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.5rem;
 
   }
 

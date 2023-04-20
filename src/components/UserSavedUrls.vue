@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import URLSave from '../Config/Interfaces/UrlSave';
 import useStore from '../store/store';
+import { reactive } from 'vue';
 
 const store = useStore();
 
 const user = store.getUser();
+
+const state = reactive({
+  copied: new Set()
+});
 
 const fetchUserSaves = async () => {
     const res = await fetch(`/api/url/user/${user?.id}`);
@@ -29,16 +34,25 @@ const deleteURLSave = async (saveId: string) => {
   }
 }
 
+const copyURL = (url: string) => {
+  navigator.clipboard.writeText("https://url-short.dev/" + url);
+  state.copied.add(url);
+}
+
 fetchUserSaves();
 </script>
 
 <template>
   <div class="savedUrlsContainer">
-    <h3>Saved Links: </h3>
+    <h3>Saved Links:</h3>
+    <div v-if="store.getURLSaves().length == 0">You have no URLs saved!</div>
     <li v-for="urlSave in store.getURLSaves()" class="savedURLWrapper">
         <div>{{ "url-short.dev/" + urlSave.urlInfo.url }}</div>
         <div class="redirectText">- {{ urlSave.urlInfo.redirect }}</div>
-        <button class="deleteButton" @click="deleteURLSave(urlSave.id)">Delete</button>
+        <div class="buttonContainer">
+          <button class="baseButton" @click="copyURL(urlSave.urlInfo.url)">{{ state.copied.has(urlSave.urlInfo.url) ? "Copied" : "Copy" }}</button>
+          <button class="baseButton" @click="deleteURLSave(urlSave.id)">Delete</button>
+        </div>
     </li>
   </div>
 </template>
@@ -57,18 +71,24 @@ fetchUserSaves();
 }
 
 .redirectText {
-  margin-left: 2rem;
+  width: 85%;
+  margin-left: 1rem;
   margin-bottom: 1rem;
 }
 
-.deleteButton {
+.buttonContainer {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.baseButton {
   width: 5rem;
   background-color: #7dcafa;
   border: none;
   padding: 0.4rem;
 }
 
-.deleteButton:hover {
+.baseButton:hover {
   background-color: #7dcafa;
   border: none;
   padding: 0.4rem;
