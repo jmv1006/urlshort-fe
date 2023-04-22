@@ -56,6 +56,7 @@ const logInUser = (username: string, id: string) => {
 
   .noAccountMessage {
     display: flex;
+    padding: 2rem;
   }
 
   .linkText:hover {
