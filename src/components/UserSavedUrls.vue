@@ -8,10 +8,12 @@ const store = useStore();
 const user = store.getUser();
 
 const state = reactive({
-  copied: new Set()
+  copied: new Set(),
+  loading: false
 });
 
 const fetchUserSaves = async () => {
+
     const res = await fetch(`/api/url/user/${user?.id}`);
     if(res.ok) {
         const resJSON = await res.json();

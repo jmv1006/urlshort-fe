@@ -21,6 +21,7 @@ const toggleModal = (type: string) => {
 }
 
 const logInUser = (username: string, id: string) => {
+  appState.setURLSaves(null)
   appState.setUser({username, id});
 }
 
@@ -34,6 +35,10 @@ const logInUser = (username: string, id: string) => {
   </div>
   <BaseModal :toggle-modal="toggleModal" :log-in-user="logInUser" :type="state.modalType" v-if="state.modalToggled" />
   <UserSavedUrls v-if="appState.getUser() != null" />
+  <div v-else class="noAccountMessage">
+    <div class="linkText" @click="toggleModal('sign-in')">Sign In &nbsp</div> 
+    or <div class="linkText" @click="toggleModal('sign-up')"> &nbsp Create An Account &nbsp</div> To Save Shortened URLs.
+  </div>
 </template>
 
 <style scoped>
@@ -48,4 +53,14 @@ const logInUser = (username: string, id: string) => {
     font-size: 2rem;
     margin-bottom: 2rem;
   }
+
+  .noAccountMessage {
+    display: flex;
+  }
+
+  .linkText:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
 </style>

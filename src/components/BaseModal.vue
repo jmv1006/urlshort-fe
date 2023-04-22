@@ -55,7 +55,7 @@ import SignUp from './SignUp.vue';
   .modalContent {
     width: 30rem;
     height: 25rem;
-    background-color: #4c4c4d;
+    background-color: #3b3a3a;
     display: flex;
     flex-direction: column;
     gap: 1rem;
