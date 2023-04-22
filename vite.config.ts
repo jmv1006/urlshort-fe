@@ -7,8 +7,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: "https://jmv1006-url-short.herokuapp.com/",
-        //target: "http://localhost:8080/",
+        //target: "https://jmv1006-url-short.herokuapp.com/",
+        target: "http://localhost:8080/",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
     }

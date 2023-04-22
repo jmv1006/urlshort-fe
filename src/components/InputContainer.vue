@@ -21,10 +21,9 @@ const getShortURL = async () => {
 
     const reqBody = {
         "url": state.urlInput,
-        "userId": "1234"
     }
 
-    const res = await fetch("/api/api/create", {
+    const res = await fetch("/api/core/create", {
         method: "POST",
         headers: {
             'Content-Type': "application/json"

@@ -25,8 +25,8 @@ const useStore = () => {
         return AppState.userSaves;
     }
 
-    const setURLSaves = (saves: Array<URLSave>) => {
-        AppState.userSaves = saves;
+    const setURLSaves = (saves: Array<URLSave> | null) => {
+        if (saves != null) AppState.userSaves = saves;
     }
 
     return { getUser, setUser, getURLSaves, setURLSaves };
