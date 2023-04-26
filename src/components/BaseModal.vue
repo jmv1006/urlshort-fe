@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AccountSettings from './AccountSettings.vue';
 import LogIn from './LogIn.vue';
 import SignUp from './SignUp.vue';
 
@@ -15,6 +16,7 @@ import SignUp from './SignUp.vue';
     <div class="modalContent">
       <button @click="props.toggleModal('')" class="closeButton">X</button>
       <LogIn :toggle-modal="props.toggleModal" :log-in-user="logInUser" v-if="props.type == 'sign-in'" />
+      <AccountSettings v-else-if="props.type == 'settings'" :toggle-modal="props.toggleModal"/>
       <SignUp v-else :toggle-modal="props.toggleModal" :log-in-user="logInUser"/>
     </div>
   </div>
@@ -54,7 +56,6 @@ import SignUp from './SignUp.vue';
 
   .modalContent {
     width: 30rem;
-    height: 25rem;
     background-color: #3b3a3a;
     display: flex;
     flex-direction: column;

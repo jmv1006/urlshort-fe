@@ -41,34 +41,33 @@ import UserInterface from '../Config/Interfaces/UserInterface';
 
 <template>
   <div class="logInContent">
-    <h2>Log In Here</h2>
+    <h2>Sign In</h2>
     <form class="logInForm" @submit.prevent @submit="fetchLogIn">
       <label>Username (E-mail)</label>
       <input type="text" v-model="state.username"/>
       <label>Password</label>
       <input type="password" v-model="state.password"/>
-      <button type="submit" class="logInSubmitButton">Log In</button>
+      <button type="submit" class="logInSubmitButton">Sign In</button>
       <div v-if="state.error" class="errorMessage">Error Signing In</div>
     </form>
   </div>
 </template>
 
 <style scoped>
-
-  .closeButton {
-    width: 2rem;
-    margin-top: .5rem;
-    margin-right: .5rem;
-  }
-
   .logInContent {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
+    margin-bottom: 2rem;
   }
 
+  .closeButton {
+    width: 2rem;
+    margin-top: .5rem;
+    margin-right: .5rem;
+  }
   .logInForm {
     display: flex;
     flex-direction: column;

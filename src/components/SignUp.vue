@@ -75,9 +75,10 @@ import UserInterface from '../Config/Interfaces/UserInterface';
         <input type="password" v-model="state.password" v-on:input="setPasswordsMatch"/>
         <label>Confirm Password</label>
         <input type="password" v-model="state.confirmedPassword" v-on:input="setPasswordsMatch"/>
-        <button class="signUpButton" v-if="!state.loading" type="submit">Sign Up</button>
+
+        <button class="signUpButton" v-if="!state.loading && state.username.length > 0 && state.passwordsMatch && state.password.length > 0" type="submit">Sign Up</button>
+        <button class="signUpButtonDisabled" v-else="!state.passwordsMatch" disabled>Sign Up</button>
       </form>
-      <div v-if="!state.passwordsMatch" class="errorText">Passwords Do Not Match</div>
       <div v-if="state.error" class="errorText">Error Signing Up</div>
     </div>
 </template>
@@ -89,6 +90,7 @@ import UserInterface from '../Config/Interfaces/UserInterface';
     align-items: center;
     justify-content: center;
     width: 100%;
+    margin-bottom: 2rem;
   }
 
   .signUpForm {
@@ -99,12 +101,20 @@ import UserInterface from '../Config/Interfaces/UserInterface';
   }
 
   .signUpButton {
+    margin-top: 1rem;
     background-color: #7dcafa;
     border: none;
     padding: .25rem;
   }
 
+  .signUpButtonDisabled {
+    margin-top: 1rem;
+    border: none;
+    padding: .25rem;
+  }
+
   .signUpButton:hover {
+    margin-top: 1rem;
     background-color: #7dcafa;
     border: none;
     padding: .25rem;

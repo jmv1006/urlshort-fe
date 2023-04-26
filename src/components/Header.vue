@@ -18,7 +18,7 @@ const signOut = () => {
   <div class="header">
     <button class="baseButton" v-if="!user" @click="props.toggleModal('sign-in')">Sign In</button>
     <button class="baseButton" v-if="!user" @click="props.toggleModal('sign-up')">Sign Up</button>
-    <div v-if="user" class="signedInText">Signed In</div>
+    <div v-if="user" class="accountSettingsText" @click="props.toggleModal('settings')">Account Settings</div>
     <div v-if="user" class="baseButton" @click="signOut">Sign Out</div>
   </div>
 </template>
@@ -49,7 +49,13 @@ const signOut = () => {
         cursor: pointer;
     }
 
-    .signedInText {
+    .accountSettingsText {
       margin-right: 1rem;
+    }
+
+    .accountSettingsText:hover {
+      margin-right: 1rem;
+      text-decoration: underline;
+      cursor: pointer;
     }
 </style>
