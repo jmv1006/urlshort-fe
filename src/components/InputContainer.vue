@@ -19,6 +19,11 @@ const getShortURL = async () => {
     state.error = false;
     state.urlShortenedSuccess = false;
 
+    if(state.urlInput.replace(" ", "").length === 0) {
+        state.error = true;
+        return
+    }
+
     const reqBody = {
         "url": state.urlInput,
     }

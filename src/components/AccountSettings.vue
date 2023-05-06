@@ -31,7 +31,7 @@ import useStore from '../store/store';
         else state.textFields.newPasswordsMatch = false
     }
 
-    const changeUserPassword = async() => {
+    const changeUserPassword = async () => {
         const body = {
             id: user?.id,
             oldPassword: state.textFields.oldPassword,
@@ -69,7 +69,7 @@ import useStore from '../store/store';
 
 <template>
   <div class="accountSettingsContent">
-    <h3>Account Settings</h3>
+    <span class="accountSettingsTitle">Account Settings</span>
     <button v-if="!state.changePasswordOpen" @click="toggleChangePasswordForm" class="baseButton">Change Password</button>
     <div v-else class="changePasswordContainer">
         <form class="changePasswordForm" @submit.prevent @submit="changeUserPassword">
@@ -98,9 +98,14 @@ import useStore from '../store/store';
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     width: 100%;
     margin-bottom: 2rem;
+  }
+
+  .accountSettingsTitle {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
   }
 
   .changePasswordContainer {
